@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { IdSaver, TokenSaver, tokenSelector, idSelector } from "./userData";
 
-export function Dashboard() {
+export function Login() {
   const dispatch = useAppDispatch();
 
   const id = useAppSelector(idSelector);
@@ -14,8 +14,8 @@ export function Dashboard() {
 
   return (
     <div>
+      Login
       <div>
-        Dashboard
         <button
           aria-label="Decrement value"
           onClick={() => dispatch(IdSaver(1))}
