@@ -57,54 +57,62 @@ export function Dashboard() {
 
               .map((filteredItem: any) => {
                 return (
-                  <Card className="item" sx={{ maxWidth: 300 }}>
-                    <CardContent>
-                      {filteredItem.images
-                        .filter((img: any) => img.height === 160)
-                        .map((img: any) => {
-                          return (
-                            <img
-                              src={
-                                !img.url
-                                  ? "https://www.legal.ca/public/uploads/images/noimage.jpg"
-                                  : img.url
-                              }
-                            />
-                          );
-                        })}
+                  <Link to="/artist/albums/">
+                    <Card
+                      onClick={() => {
+                        dispatch(IdSaver(filteredItem.id));
+                      }}
+                      className="item"
+                      sx={{ maxWidth: 300 }}
+                    >
+                      <CardContent>
+                        {filteredItem.images
+                          .filter((img: any) => img.height === 160)
+                          .map((img: any) => {
+                            return (
+                              <img
+                                src={
+                                  !img.url
+                                    ? "https://www.legal.ca/public/uploads/images/noimage.jpg"
+                                    : img.url
+                                }
+                              />
+                            );
+                          })}
 
-                      <Typography>{filteredItem.name}</Typography>
-                      <Typography
-                        sx={{ fontSize: 14 }}
-                        color="text.secondary"
-                        gutterBottom
-                      >
-                        {filteredItem.followers.total} followers
-                      </Typography>
-                      <Typography
-                        sx={{ fontSize: 14 }}
-                        color="text.secondary"
-                        gutterBottom
-                      >
-                        {filteredItem.popularity} popularity
-                      </Typography>
+                        <Typography>{filteredItem.name}</Typography>
+                        <Typography
+                          sx={{ fontSize: 14 }}
+                          color="text.secondary"
+                          gutterBottom
+                        >
+                          {filteredItem.followers.total} followers
+                        </Typography>
+                        <Typography
+                          sx={{ fontSize: 14 }}
+                          color="text.secondary"
+                          gutterBottom
+                        >
+                          {filteredItem.popularity} popularity
+                        </Typography>
 
-                      <Typography
-                        sx={{ position: "relative", top: 30 }}
-                        color="text.secondary"
-                      >
-                        {filteredItem.y} tracks
-                      </Typography>
-                      <Rating
-                        style={{ position: "relative", top: 25, right: 4.5 }}
-                        name="simple-controlled"
-                        value={filteredItem.popularity > 40 ? 5 : 3}
-                        // onChange={(event, newValue) => {
-                        //   setValue(5);
-                        // }}
-                      />
-                    </CardContent>
-                  </Card>
+                        <Typography
+                          sx={{ position: "relative", top: 30 }}
+                          color="text.secondary"
+                        >
+                          {filteredItem.total_tracks} tracks
+                        </Typography>
+                        <Rating
+                          style={{ position: "relative", top: 25, right: 4.5 }}
+                          name="simple-controlled"
+                          value={filteredItem.popularity > 40 ? 5 : 3}
+                          // onChange={(event, newValue) => {
+                          //   setValue(5);
+                          // }}
+                        />
+                      </CardContent>
+                    </Card>
+                  </Link>
                 );
               })
           : null}
